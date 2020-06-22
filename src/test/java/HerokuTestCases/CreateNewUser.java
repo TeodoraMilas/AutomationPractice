@@ -36,7 +36,7 @@ public class CreateNewUser {
     public void navigateToSignUpForm(){
         userIdentity.navigateToLoginForm();
         userIdentity.clearFields();
-        Assert.assertEquals("LoginPractice as Existing Customer", userIdentity.formTitleText);
+        Assert.assertEquals("Login as Existing Customer", userIdentity.formTitleText);
         userIdentity.navigateToSignUpForm();
         Assert.assertEquals("New Customer", userIdentity.formTitleText);
     }

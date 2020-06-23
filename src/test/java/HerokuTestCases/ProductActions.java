@@ -21,6 +21,7 @@ public class ProductActions{
             driver = driverManager.getWebDriver();
             return driver;
         }
+
         WebDriver driverInUse = getDriver();
 
         ProductListPage productList = new ProductListPage(driverInUse);

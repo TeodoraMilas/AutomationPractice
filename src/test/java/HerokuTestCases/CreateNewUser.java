@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import static HerokuPages.DataToUse.VALID_EMAIL;
+
 import static HerokuPages.DataToUse.VALID_PASSWORD;
 
 public class CreateNewUser {

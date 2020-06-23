@@ -22,6 +22,7 @@ public class CreateNewUser {
         driver = driverManager.getWebDriver();
         return driver;
     }
+
     WebDriver driverInUse = getDriver();
     UserIdentityPage userIdentity = new UserIdentityPage(driverInUse);
     ProductListPage productListPage = new ProductListPage(driverInUse);

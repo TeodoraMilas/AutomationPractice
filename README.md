@@ -1,4 +1,7 @@
 # AutomationPractice
+
+![GitHub](https://img.shields.io/github/license/TeodoraMilas/AutomationPractice?style=flat-square)
+
 AutomationPractice is a project that I've started while learning automation testing.
 
 I'm using https://demo-teo.herokuapp.com/ - a demo website for e-commerce - to practice my magic.

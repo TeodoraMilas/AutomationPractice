@@ -1,6 +1,6 @@
 # AutomationPractice
 
-<a href='http://localhost:8080/job/chromeTests/'><img src='http://localhost:8080/buildStatus/icon?job=chromeTests'></a>
+[![Build Status](http://localhost:8080/buildStatus/icon?job=chromeTests)](http://localhost:8080/job/chromeTests/)
 
 AutomationPractice is a project that I've started while learning automation testing.
 

@@ -1,6 +1,6 @@
 # AutomationPractice
 
-![GitHub](https://img.shields.io/github/license/TeodoraMilas/AutomationPractice?style=flat-square)
+<a href='http://localhost:8080/job/chromeTests/'><img src='http://localhost:8080/buildStatus/icon?job=chromeTests'></a>
 
 AutomationPractice is a project that I've started while learning automation testing.
 

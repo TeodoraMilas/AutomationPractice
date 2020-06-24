@@ -1,6 +1,6 @@
 # AutomationPractice
 
-[![Build Status](https://61037293ad05.ngrok.io/buildStatus/icon?job=chromeTests)](https://61037293ad05.ngrok.io/job/chromeTests/)
+[![Build Status](https://61037293ad05.ngrok.io/buildStatus/icon?job=chromeTests?subject=chrome)](https://61037293ad05.ngrok.io/job/chromeTests/)
 
 AutomationPractice is a project that I've started while learning automation testing.
 

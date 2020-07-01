@@ -19,8 +19,6 @@ public class ProductListPage{
     private static WebDriver driver;
     DataToUse base = new DataToUse(driver);
     private String searchText;
-    public String currency;
-    public double productPrice;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"taxon\"]")
     private WebElement dropdown;
@@ -70,14 +68,6 @@ public class ProductListPage{
                                                 + ProductId.getValue() + "\"]"));
         element.click();
     }
-
-//    public void getPrice(ProductId ProductId){
-//        WebElement element = driver.findElement(By.xpath("//*[@id=\"product_"
-//                                                + ProductId + "\"]/div/div[2]"));
-//        String fullPrice = element.getText();
-//        currency = String.valueOf(fullPrice.charAt(0));
-//        productPrice = fullPrice.subSequence(1, 5);
-//    }
 
     public void openDropdown(){
         dropdown.click();

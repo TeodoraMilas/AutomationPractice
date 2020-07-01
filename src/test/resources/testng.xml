@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="HerokuTestCases.ProductManagementCart">
+    <test name="HerokuTestCases.ProductManagementCart">
+        <groups>
+            <run>
+                <include name="sanity"/>
+                <include name="regression"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="HerokuTestCases.ProductManagementCart">
+            </class>
+        </classes>
+    </test>
+</suite>

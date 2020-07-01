@@ -16,6 +16,9 @@ public class ProductDetailsPage{
     @FindBy(how = How.ID_OR_NAME, using = "add-to-cart-button")
     private WebElement addToCartButton;
 
+    @FindBy(how = How.XPATH, using = "//*[@class=\"lead price selling\"]")
+    private WebElement itemPrice;
+
     public ProductDetailsPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -27,5 +30,11 @@ public class ProductDetailsPage{
 
     public void addProductToCart(){
         addToCartButton.click();
+    }
+
+    public double getPrice(){
+        char currency = itemPrice.getText().charAt(0);
+        double price = Double.parseDouble(itemPrice.getText().substring(1));
+        return price;
     }
 }

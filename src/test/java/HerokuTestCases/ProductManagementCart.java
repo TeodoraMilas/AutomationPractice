@@ -1,52 +1,98 @@
 package HerokuTestCases;
 
+import DriverManager.DriverManagerAbstraction;
+import DriverManager.DriverManagerFactory;
 import HerokuPages.CartDetailsScreen;
 import HerokuPages.ProductDetailsPage;
 import HerokuPages.ProductListPage;
 import HerokuPages.ProductListPage.ProductId;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
+//by default test are executed in alphabetical order in testng
 public class ProductManagementCart {
-    WebDriver driver = new ChromeDriver();
-    ProductListPage productListPage = new ProductListPage(driver);
-    ProductDetailsPage productDetailsPage = new ProductDetailsPage(driver);
-    CartDetailsScreen cartDetailsScreen = new CartDetailsScreen(driver);
+    DriverManagerAbstraction driverManager =
+            DriverManagerFactory.getDriverManager();
 
-    @Before
+    ProductListPage productList;
+    ProductDetailsPage productDetails;
+    CartDetailsScreen cartDetails;
+
+    @BeforeMethod(alwaysRun = true)
     public void navigateToMainPage(){
-        productListPage.get();
+        productList = new ProductListPage(driverManager.getWebDriver());
+        productDetails = new ProductDetailsPage(driverManager.getWebDriver());
+        cartDetails = new CartDetailsScreen(driverManager.getWebDriver());
+        productList.get();
     }
 
-    @Test
+    @Test(priority = 1, groups = {"sanity"})
     public void addProductToCart(){
-        Assert.assertEquals(true, productListPage.cardButtonState().contains("Empty"));
-        productListPage.openCartDetails();
-        Assert.assertEquals(true, cartDetailsScreen.getEmptyCartMessage().contains("Your cart is empty"));
-        driver.navigate().back();
-        productListPage.product(ProductId.SPAGHETTI);
-        System.out.println(productListPage.productPrice);
-        productDetailsPage.addProductToCart();
-        System.out.println(cartDetailsScreen.getTotalPricePerItem());
-        //Assert.assertEquals(productListPage.productPrice.contains("$19.99"), cartDetailsScreen.getTotalPricePerItem());
-
+        Assert.assertEquals(true, productList.cardButtonState().contains("Empty"));
+        productList.openCartDetails();
+        Assert.assertEquals(true, cartDetails.getEmptyCartMessage().contains("Your cart is empty"));
+        driverManager.getWebDriver().navigate().back();
+        productList.product(ProductId.SPAGHETTI);
+        double productDetailsPrice = productDetails.getPrice();
+        productDetails.addProductToCart();
+        Assert.assertTrue(productDetailsPrice == cartDetails.getItemPrice());
+        Assert.assertTrue(cartDetails.getItemName().contains("Spaghetti"));
     }
 
-    @Test
-    public void increaseAndDecreaseItem(){}
+    @Test(priority = 2, enabled = false, groups = "regression")
+    public void increaseItemQty(){
+        productList.product(ProductId.SPAGHETTI);
+        productDetails.addProductToCart();
+        System.out.println(cartDetails.getItemQuantity());
+        Assert.assertEquals(1, cartDetails.getItemQuantity());
+        cartDetails.modifyItemQuantity("3");
+        cartDetails.updateCart();
+        Assert.assertEquals(3, cartDetails.getItemQuantity());
+        Assert.assertTrue(cartDetails.getItemPrice() * 3 == cartDetails.getTotalPricePerItem());
+        Assert.assertTrue(cartDetails.getTotalPricePerItem() == cartDetails.getTotalCartPrice());
+    }
 
-    @Test
-    public void deleteProductFromCart(){}
+    @Test(priority = 3, groups = {"regression"})
+    public void decreaseItemQty(){
+        productList.product(ProductId.SPAGHETTI);
+        productDetails.addProductToCart();
+        Assert.assertEquals(1, cartDetails.getItemQuantity());
+        cartDetails.modifyItemQuantity("3");
+        cartDetails.updateCart();
+        cartDetails.modifyItemQuantity("2");
+        Assert.assertEquals(2, cartDetails.getItemQuantity());
+    }
 
-    @Test
-    public void emptyCart(){}
+    @Test(priority = 4, groups = {"regression"})
+    public void updateQtyToZero(){
+        productList.product(ProductId.SPAGHETTI);
+        productDetails.addProductToCart();
+        Assert.assertEquals(1, cartDetails.getItemQuantity());
+        cartDetails.modifyItemQuantity("0");
+        cartDetails.updateCart();
+        Assert.assertEquals(true, cartDetails.getEmptyCartMessage().contains("Your cart is empty"));
+    }
 
-//    @After
-//    public void close(){
-//        driver.close();
-//    }
+    @Test(priority = 5, groups = {"sanity"})
+    public void deleteItem(){
+        productList.product(ProductId.SPAGHETTI);
+        productDetails.addProductToCart();
+        Assert.assertEquals(1, cartDetails.getItemQuantity());
+        cartDetails.deleteItem();
+        Assert.assertEquals(true, cartDetails.getEmptyCartMessage().contains("Your cart is empty"));
+    }
+
+    @Test(priority = 6, groups = {"sanity", "regression"})
+    public void emptyCart(){
+        productList.product(ProductId.SPAGHETTI);
+        productDetails.addProductToCart();
+        Assert.assertEquals(1, cartDetails.getItemQuantity());
+        cartDetails.deleteCart();
+        Assert.assertEquals(true, cartDetails.getEmptyCartMessage().contains("Your cart is empty"));
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void closeDriver(){
+        driverManager.quitWebDriver();
+    }
 }

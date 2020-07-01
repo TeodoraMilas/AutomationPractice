@@ -21,7 +21,9 @@ I like to keep things simple and develop them as needed.
 Features:
 - browsers configured using Factory pattern: Chrome, Firefox, Opera, Edge, IE
 - page object pattern for separating actual tests from their methods
-- take screenshots when tests fail
+- take screenshots when tests fail using Test Rules (currently used only in one of the test classes)
+- Jenkins is integrated with GitHub and tests are triggered at each push
+- Maven projects configured in Jenkins for each browser
 
 Currently working on:
-- reporting test results
+- exploring TestNG for test reporting

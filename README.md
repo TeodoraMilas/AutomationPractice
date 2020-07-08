@@ -22,8 +22,9 @@ Features:
 - browsers configured using Factory pattern: Chrome, Firefox, Opera, Edge, IE
 - page object pattern for separating actual tests from their methods
 - take screenshots when tests fail using Test Rules (currently used only in one of the test classes)
-- Jenkins is integrated with GitHub and tests are triggered at each push
-- Maven projects configured in Jenkins for each browser
+- Jenkins is integrated with GitHub and tests are triggered and executed at each push
+- Maven profiles configured in Jenkins for each browser
+- Two test classes are written following TestNG principles(CartManagement and Checkout)
 
 Currently working on:
-- exploring TestNG for test reporting
+- exploring Cucumber and BDD

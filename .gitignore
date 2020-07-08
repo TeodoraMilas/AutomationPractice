@@ -11,7 +11,7 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 .idea/
-/src/main/java/WebDriver/
+/src/main/java/Exercises.WebDriver/
 /src/test/java/DriverAbstraction/
 /src/test/java/Exercises/
 /src/test/java/RefactoringToPageObject/

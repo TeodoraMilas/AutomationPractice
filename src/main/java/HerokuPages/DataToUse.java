@@ -16,4 +16,7 @@ public class DataToUse {
     //valid user data
     final public static String VALID_EMAIL = "teodora.straton@gmail.com";
     final public static String VALID_PASSWORD = "teo123";
+
+    //new user data
+    final public static String NEW_USER_EMAIL = "teodora.straton+05@gmail.com";
 }

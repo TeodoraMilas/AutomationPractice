@@ -41,6 +41,9 @@ public class CartDetailsScreen {
     @FindBy(how = How.XPATH, using = "//*[@class=\"lead\"]")
     private WebElement totalCartPrice;
 
+    @FindBy(how = How.ID_OR_NAME, using = "checkout-link")
+    private WebElement checkoutButton;
+
     public String getEmptyCartMessage(){
         return emptyCartMessage.getText();
     }
@@ -86,5 +89,9 @@ public class CartDetailsScreen {
         char currency = totalCartPrice.getText().charAt(0);
         double price = Double.parseDouble(totalCartPrice.getText().substring(1));
         return price;
+    }
+
+    public void navigateToCheckout(){
+        checkoutButton.click();
     }
 }

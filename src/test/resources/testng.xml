@@ -12,6 +12,8 @@
         <classes>
             <class name="HerokuTestCases.ProductManagementCart">
             </class>
+            <class name="HerokuTestCases.CheckoutAddressActions">
+            </class>
         </classes>
     </test>
 </suite>

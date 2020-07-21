@@ -13,5 +13,4 @@ buildNumber.properties
 .idea/
 /src/main/java/Exercises.WebDriver/
 /src/test/java/DriverAbstraction/
-/src/test/java/Exercises/
 /src/test/java/RefactoringToPageObject/
